@@ -10,6 +10,10 @@ public class Section {
     private List<Task> tasks;
     private double progress;
 
+    public Section(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -24,6 +28,10 @@ public class Section {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public void addTask(Task task){
+        this.tasks.add(task);
     }
 
     public double getProgress(){

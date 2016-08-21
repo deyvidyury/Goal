@@ -20,6 +20,14 @@ public class Task {
     private double totalExpends;
     private int daysLeft;
 
+    public Task(String name, Date startDate, Date endDate, Status status, String description) {
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+        this.description = description;
+    }
+
     public String getName() {
         return name;
     }

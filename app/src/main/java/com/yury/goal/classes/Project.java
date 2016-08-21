@@ -14,6 +14,15 @@ public class Project {
     private List<Section> sections;
     private double progress;
 
+    public Project(String name, Date startDate, Date endDate, double budget) {
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.budget = budget;
+        Section mySection = new Section("My Tasks");
+        sections.add(mySection);
+    }
+
     public String getName() {
         return name;
     }
@@ -52,6 +61,14 @@ public class Project {
 
     public void setSections(List<Section> sections) {
         this.sections = sections;
+    }
+
+    public void addSection(Section section){
+        this.sections.add(section);
+    }
+
+    public void addSection(List<Section> sections){
+        this.sections.addAll(sections);
     }
 
     public double getProgress(){
