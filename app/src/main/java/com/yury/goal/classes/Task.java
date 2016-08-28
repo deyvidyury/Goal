@@ -20,6 +20,7 @@ public class Task {
     private List<Expend> expends;
     private double totalExpends;
     private int daysLeft;
+    private int projectId;
 
     public Task(String name, Date startDate, Date endDate, Status status, String description) {
         this.name = name;
@@ -87,6 +88,14 @@ public class Task {
     }
 
     public int getDaysLeft(){
-        return Days.daysBetween(new DateTime(), new DateTime(endDate.getTime())).getDays();
+        return Days.daysBetween(new DateTime(startDate.getTime()), new DateTime(endDate.getTime())).getDays();
+    }
+
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 }

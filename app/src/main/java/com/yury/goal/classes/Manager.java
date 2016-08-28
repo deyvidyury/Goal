@@ -56,4 +56,14 @@ public class Manager {
     public List<Project> getProjects(){
         return this.projects;
     }
+
+    public List<Task> getTasks(){
+        List<Task> tasks = new ArrayList<Task>();
+        for(Project project : projects){
+            for(Section section : project.getSections()){
+                tasks.addAll(section.getTasks());
+            }
+        }
+        return tasks;
+    }
 }

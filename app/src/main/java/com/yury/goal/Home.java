@@ -12,19 +12,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yury.goal.adapters.ProjectsAdapater;
+import com.yury.goal.adapters.TasksAdapter;
 import com.yury.goal.classes.Manager;
 import com.yury.goal.classes.Project;
 
 public class Home extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private ListView listViewProjects;
+    private ListView listViewTasks;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        //Listview
+
+        //Listview for Projects
         listViewProjects = (ListView)findViewById(R.id.listViewProjects);
         listViewProjects.setAdapter(new ProjectsAdapater(this,Manager.getInstance().getProjects()));
         listViewProjects.setOnItemClickListener(this);
+
+        // ListView for Tasks
+        listViewTasks = (ListView)findViewById(R.id.listViewTasks);
+        listViewTasks.setAdapter(new TasksAdapter(this,Manager.getInstance().getTasks()));
     }
 
     @Override
