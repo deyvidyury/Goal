@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class Task {
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
+        this.expends = new ArrayList<Expend>();
         this.description = description;
     }
 

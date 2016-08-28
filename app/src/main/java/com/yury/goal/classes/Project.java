@@ -1,5 +1,6 @@
 package com.yury.goal.classes;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Project {
         this.startDate = startDate;
         this.endDate = endDate;
         this.budget = budget;
+        sections = new ArrayList<Section>();
         Section mySection = new Section("My Tasks");
         sections.add(mySection);
     }

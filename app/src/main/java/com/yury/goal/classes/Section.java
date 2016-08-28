@@ -1,5 +1,6 @@
 package com.yury.goal.classes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,7 @@ public class Section {
     private double progress;
 
     public Section(String name) {
+        tasks = new ArrayList<Task>();
         this.name = name;
     }
 

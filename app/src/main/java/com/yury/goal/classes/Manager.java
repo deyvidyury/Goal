@@ -17,6 +17,8 @@ public class Manager {
     }
 
     private Manager() {
+        projects = new ArrayList<Project>();
+
         Project project1 = new Project("Project A",new Date(2016,1,1),new Date(2016,10,01),1000.0);
         Project project2 = new Project("Project B",new Date(2016,2,1),null,0);
 
@@ -46,5 +48,12 @@ public class Manager {
 
         project2.addSection(section1Project2);
         project2.addSection(section2Project2);
+
+        projects.add(project1);
+        projects.add(project2);
+    }
+
+    public List<Project> getProjects(){
+        return this.projects;
     }
 }
