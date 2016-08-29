@@ -3,4 +3,5 @@
     <string name="projectsTitle">Projects</string>
     <string name="tasksTitle">Tasks</string>
     <string name="days">days</string>
+    <string name="newProject">New Project</string>
 </resources>
