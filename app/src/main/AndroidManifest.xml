@@ -8,14 +8,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Home">
+        <activity android:name=".Home" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewProject"></activity>
+        <activity android:name=".NewProject" android:label="@string/new_project"></activity>
     </application>
 
 </manifest>

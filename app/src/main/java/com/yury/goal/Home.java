@@ -1,5 +1,6 @@
 package com.yury.goal;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -54,11 +55,10 @@ public class Home extends AppCompatActivity implements AdapterView.OnItemClickLi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.newProject:
-                Toast.makeText(this,"New project",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,NewProject.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 }
