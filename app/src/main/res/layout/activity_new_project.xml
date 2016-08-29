@@ -26,14 +26,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/start"/>
+            android:hint="@string/start"
+            android:focusableInTouchMode="false"/>
 
         <EditText
             android:id="@+id/finishDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/finish"/>
+            android:hint="@string/finish"
+            android:focusableInTouchMode="false"/>
     </LinearLayout>
 
     <LinearLayout
