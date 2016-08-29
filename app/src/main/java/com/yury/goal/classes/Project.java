@@ -8,21 +8,28 @@ import java.util.List;
  * Created by deyvidyury on 20/08/16.
  */
 public class Project {
+    private static int ID = 0;
+
     private String name;
     private Date startDate;
     private Date endDate;
     private double budget;
     private List<Section> sections;
     private double progress;
+    private Status status;
+    private int projectId;
 
     public Project(String name, Date startDate, Date endDate, double budget) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
         this.budget = budget;
+        this.projectId = ID;
+        ID+=1;
         sections = new ArrayList<Section>();
         Section mySection = new Section("My Tasks");
         sections.add(mySection);
+
     }
 
     public String getName() {
@@ -86,5 +93,17 @@ public class Project {
         }
 
         return (tasksDone/totalTasks)*100;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public int getProjectId() {
+        return projectId;
     }
 }

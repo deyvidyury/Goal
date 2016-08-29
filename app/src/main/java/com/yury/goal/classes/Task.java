@@ -12,6 +12,7 @@ import java.util.List;
  * Created by deyvidyury on 20/08/16.
  */
 public class Task {
+    private static int ID;
     private String name;
     private Date startDate;
     private Date endDate;
@@ -21,6 +22,8 @@ public class Task {
     private double totalExpends;
     private int daysLeft;
     private int projectId;
+    private int sectionId;
+    private int taskId;
 
     public Task(String name, Date startDate, Date endDate, Status status, String description) {
         this.name = name;
@@ -29,6 +32,8 @@ public class Task {
         this.status = status;
         this.expends = new ArrayList<Expend>();
         this.description = description;
+        this.taskId = ID;
+        ID += 1;
     }
 
     public String getName() {
@@ -87,8 +92,15 @@ public class Task {
         return total;
     }
 
+    /**
+     * This function must be refactored later
+     * Now it's only returning the amount of days between the start and finish.
+     * Must show difference between today and the end date.
+     * @return
+     */
     public int getDaysLeft(){
         return Days.daysBetween(new DateTime(startDate.getTime()), new DateTime(endDate.getTime())).getDays();
+        //return Days.daysBetween(new DateTime(), new DateTime(endDate.getTime())).getDays();
     }
 
     public int getProjectId() {
@@ -97,5 +109,17 @@ public class Task {
 
     public void setProjectId(int projectId) {
         this.projectId = projectId;
+    }
+
+    public int getSectionId() {
+        return sectionId;
+    }
+
+    public void setSectionId(int sectionId) {
+        this.sectionId = sectionId;
+    }
+
+    public int getTaskId() {
+        return taskId;
     }
 }
