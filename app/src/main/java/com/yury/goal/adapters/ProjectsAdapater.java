@@ -20,8 +20,7 @@ public class ProjectsAdapater extends BaseAdapter{
     private List<Project> projects = Manager.getInstance().getProjects();
     private Context context;
 
-    public ProjectsAdapater(Context context, List<Project> projects) {
-        this.projects = projects;
+    public ProjectsAdapater(Context context) {
         this.context = context;
     }
 
