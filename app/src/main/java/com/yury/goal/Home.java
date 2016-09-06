@@ -1,5 +1,6 @@
 package com.yury.goal;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,9 +21,13 @@ import com.yury.goal.adapters.TasksAdapter;
 import com.yury.goal.classes.Manager;
 import com.yury.goal.classes.Project;
 
+import java.util.List;
+
 public class Home extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private ListView listViewProjects;
     private ListView listViewTasks;
+    public static ProjectsAdapater projectsAdapater;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +35,25 @@ public class Home extends AppCompatActivity implements AdapterView.OnItemClickLi
 
         //Listview for Projects
         listViewProjects = (ListView)findViewById(R.id.listViewProjects);
-        listViewProjects.setAdapter(new ProjectsAdapater(this,Manager.getInstance().getProjects()));
+        projectsAdapater = new ProjectsAdapater(this,Manager.getInstance().getProjects());
+        listViewProjects.setAdapter(projectsAdapater);
         listViewProjects.setOnItemClickListener(this);
 
         // ListView for Tasks
         listViewTasks = (ListView)findViewById(R.id.listViewTasks);
         listViewTasks.setAdapter(new TasksAdapter(this,Manager.getInstance().getTasks()));
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                projectsAdapater.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

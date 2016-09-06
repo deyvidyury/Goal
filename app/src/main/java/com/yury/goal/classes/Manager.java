@@ -1,5 +1,9 @@
 package com.yury.goal.classes;
 
+import android.util.Log;
+
+import com.yury.goal.Home;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -65,5 +69,10 @@ public class Manager {
             }
         }
         return tasks;
+    }
+
+    public void adiciona(Project project){
+        Log.i("PROJECT",project.toString());
+        projects.add(project);
     }
 }

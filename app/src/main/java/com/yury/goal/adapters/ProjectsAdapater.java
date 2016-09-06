@@ -53,4 +53,8 @@ public class ProjectsAdapater extends BaseAdapter{
         projectProgress.setText(project.getProgress()+"%");
         return view;
     }
+
+    public List getProjects(){
+        return projects;
+    }
 }

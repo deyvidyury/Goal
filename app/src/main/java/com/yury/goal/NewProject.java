@@ -10,6 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.yury.goal.adapters.ProjectsAdapater;
+import com.yury.goal.classes.Manager;
+import com.yury.goal.classes.Project;
+import com.yury.goal.classes.Section;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -24,6 +30,7 @@ public class NewProject extends AppCompatActivity {
     private Date startDate;
     private Date finishDate;
     private double budget;
+    private String section;
 
     DatePickerDialog datePickerDialog;
 
@@ -115,6 +122,9 @@ public class NewProject extends AppCompatActivity {
         EditText etBudget = (EditText)findViewById(R.id.budget);
         budget = Double.parseDouble(etBudget.getText().toString().equals("") ? "0" : etBudget.getText().toString());
 
+        EditText etSection = (EditText)findViewById(R.id.sectionName);
+        section = etSection.getText().toString();
+
         if(projectName.trim().equals("")){
             etProjectName.setError("You need to enter a project name");
         } else if (etStartDate.getText().toString().trim().equals("")){
@@ -124,7 +134,13 @@ public class NewProject extends AppCompatActivity {
         } else if (Days.daysBetween(new DateTime(startDate),new DateTime(finishDate)).getDays() < 0){
             etFinishDate.setError("End day must be after start date.");
         } else {
+            Project project = new Project(projectName,startDate,finishDate,budget);
+            Section sec = new Section(section);
+            project.addSection(sec);
+            Manager.getInstance().adiciona(project);
 
+            Toast.makeText(this,"Project succesfully saved.",Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.yury.goal.classes;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -84,10 +85,14 @@ public class Project {
         double totalTasks = 0;
         double tasksDone = 0;
         for (Section e: sections) {
-            for(Task t : e.getTasks()){
-                totalTasks++;
-                if(t.getStatus() == Status.DONE){
-                    tasksDone++;
+            if(e.getTasks().size() == 0){
+                return 0;
+            } else {
+                for(Task t : e.getTasks()){
+                    totalTasks++;
+                    if(t.getStatus() == Status.DONE){
+                        tasksDone++;
+                    }
                 }
             }
         }
@@ -105,5 +110,11 @@ public class Project {
 
     public int getProjectId() {
         return projectId;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat sf = new SimpleDateFormat("dd/mm/yyyyy");
+        return getName()+", from: "+sf.format(getStartDate())+" to "+sf.format(getEndDate());
     }
 }
