@@ -18,11 +18,10 @@ import java.util.List;
  */
 public class TasksAdapter extends BaseAdapter {
     private final Context context;
-    private List<Task> tasks;
+    private List<Task> tasks = Manager.getInstance().getTasks();
 
-    public TasksAdapter(Context context, List<Task> tasks) {
+    public TasksAdapter(Context context) {
         this.context = context;
-        this.tasks = tasks;
     }
 
     @Override
