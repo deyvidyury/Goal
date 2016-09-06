@@ -7,25 +7,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:text="New Text"
             android:id="@+id/projectName"
-            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:gravity="left"/>
+            android:gravity="center|left"
+            />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:text="New Text"
             android:id="@+id/projectProgress"
-            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:gravity="right"/>
+            android:gravity="center|right"/>
     </LinearLayout>
 
 </LinearLayout>

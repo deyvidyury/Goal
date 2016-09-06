@@ -7,22 +7,14 @@
     tools:context="com.yury.goal.Home"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/projectsTitle"
-        android:id="@+id/projectsTitle"
-        android:layout_gravity="center_horizontal" />
-
-    <ListView
+    <fragment
+        android:id="@+id/ProjectsFrag"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/listViewProjects"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        class="com.yury.goal.Fragments.ProjectsFragment"/>
 
-
+<!--
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,5 +29,5 @@
         android:id="@+id/listViewTasks"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1" />
-
+-->
 </LinearLayout>
