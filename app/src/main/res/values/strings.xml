@@ -5,11 +5,18 @@
     <string name="days">days</string>
     <string name="newProject">New Project</string>
     <string name="new_project">New Project</string>
-    <string name="start">Start</string>
-    <string name="finish">Finish</string>
+    <string name="start">Start:</string>
+    <string name="finish">Finish:</string>
     <string name="budget">Budget</string>
     <string name="new_project_name">Project Name</string>
     <string name="section">Section</string>
     <string name="sectionName">Tasks</string>
     <string name="save_project">Save Project</string>
+    <string name="progress">Progress</string>
+    <string name="noProjects">There is no projects yet.</string>
+    <string name="edit_project">Edit Project</string>
+    <string name="delete_project">Delete Project</string>
+    <string name="addTask">New Task</string>
+    <string name="description">Description</string>
+    <string name="new_task_name">New Task Name</string>
 </resources>

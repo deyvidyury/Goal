@@ -1,6 +1,7 @@
 package com.yury.goal;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yury.goal.classes.Manager;
@@ -23,13 +25,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class NewProject extends AppCompatActivity {
+public class EditProject extends AppCompatActivity {
     private String projectName;
     private Date startDate;
     private Date finishDate;
     private double budget;
     private String section;
-
+    private int position = 0;
     DatePickerDialog datePickerDialog;
 
     @Override
@@ -37,17 +39,28 @@ public class NewProject extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_project);
 
+
+        position = getIntent().getIntExtra("position",position);
+
+        final Project project = Manager.getInstance().getProjects().get(position);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+
+        EditText etProjectName = (EditText)findViewById(R.id.etProjectName);
+        etProjectName.setText(project.getName());
+
         final EditText etStartDate = (EditText)findViewById(R.id.startDate);
+        etStartDate.setText(project.getStringStartDate());
         etStartDate.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                final int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
+                int year = project.getStartDate().getYear();
+                final int month = project.getStartDate().getMonth();
+                int day = project.getStartDate().getDay();
 
-                datePickerDialog = new DatePickerDialog(NewProject.this, new DatePickerDialog.OnDateSetListener() {
+                datePickerDialog = new DatePickerDialog(EditProject.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         etStartDate.setText(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);
@@ -58,16 +71,16 @@ public class NewProject extends AppCompatActivity {
         });
 
         final EditText etFinishDate = (EditText)findViewById(R.id.finishDate);
+        etFinishDate.setText(project.getStringEndDate());
         etFinishDate.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                final int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
+                int year = project.getEndDate().getYear();
+                final int month = project.getEndDate().getMonth();
+                int day = project.getEndDate().getDay();
 
-                datePickerDialog = new DatePickerDialog(NewProject.this, new DatePickerDialog.OnDateSetListener() {
+                datePickerDialog = new DatePickerDialog(EditProject.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         etFinishDate.setText(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);
@@ -77,7 +90,9 @@ public class NewProject extends AppCompatActivity {
             }
         });
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        EditText etBudget = (EditText)findViewById(R.id.budget);
+        etBudget.setText(project.getBudget()+"");
+
     }
 
     @Override
@@ -134,13 +149,17 @@ public class NewProject extends AppCompatActivity {
         } else if (Days.daysBetween(new DateTime(startDate),new DateTime(finishDate)).getDays() < 0){
             etFinishDate.setError("End day must be after start date.");
         } else {
-            Project project = new Project(projectName,startDate,finishDate,budget);
-            Section sec = new Section(section);
-            project.addSection(sec);
-            Manager.getInstance().adiciona(project);
+            Project project = Manager.getInstance().getProjects().get(position);
 
-            Toast.makeText(this,"Project succesfully saved.",Toast.LENGTH_SHORT).show();
+            project.setName(projectName);
+            project.setStartDate(startDate);
+            project.setEndDate(finishDate);
+            project.setBudget(budget);
+
+            Toast.makeText(this,"Project succesfully updated.",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this,ProjectActivity.class);
             finish();
+            startActivity(intent);
         }
     }
 }

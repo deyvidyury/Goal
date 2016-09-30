@@ -11,6 +11,15 @@
         android:id="@+id/projectsTitle"
         android:layout_gravity="center_horizontal" />
 
+    <!--<TextView-->
+        <!--android:id="@+id/noProjects"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/noProjects"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:gravity="center"-->
+        <!--android:visibility="invisible"/>-->
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

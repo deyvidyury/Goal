@@ -11,49 +11,42 @@ import com.yury.goal.R;
 import com.yury.goal.classes.Manager;
 import com.yury.goal.classes.Project;
 
-import java.util.List;
-
 /**
- * Created by deyvidyury on 27/08/16.
+ * Created by deyvidyury on 6/09/16.
  */
-public class ProjectsAdapater extends BaseAdapter{
-    private List<Project> projects = Manager.getInstance().getProjects();
+public class ProjectAdapter extends BaseAdapter {
     private Context context;
 
-    public ProjectsAdapater(Context context) {
+    public ProjectAdapter(Context context) {
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return projects != null ? projects.size() : 0;
+        return 0;
     }
 
     @Override
     public Object getItem(int position) {
-        return projects.get(position);
+        return null;
     }
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return 0;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Infla view
+        Project project = Manager.getInstance().getProjects().get(position);
         View view = LayoutInflater.from(context).inflate(R.layout.project_adapter,parent,false);
-        // Faz findViewById das views que precisa atualizar
-        TextView projectName = (TextView)view.findViewById(R.id.projectName);
         TextView projectProgress = (TextView)view.findViewById(R.id.projectProgress);
-        //Atualiza os valores das views
-        Project project = projects.get(position);
-        projectName.setText(project.getName());
-        projectProgress.setText(project.getProgress()+"%");
-        return view;
-    }
+        TextView projrectBudget = (TextView)view.findViewById(R.id.projectBudget);
+        TextView projectDaysLeft = (TextView)view.findViewById(R.id.projectDaysLeft);
 
-    public List getProjects(){
-        return projects;
+        projectProgress.setText(project.getProgress()+"");
+        projrectBudget.setText(project.getBudget()+"");
+        projectDaysLeft.setText("20 days");
+        return view;
     }
 }

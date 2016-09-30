@@ -25,9 +25,9 @@ public class TasksFragment extends Fragment {
         View view = inflater.inflate(R.layout.tasks_fragment,container,false);
 
         // List view
-        listView = (ListView)view.findViewById(R.id.listViewTasks);
-        adapter = new TasksAdapter(getActivity());
-        listView.setAdapter(adapter);
+//        listView = (ListView)view.findViewById(R.id.listViewTasks);
+//        adapter = new TasksAdapter(getActivity());
+//        listView.setAdapter(adapter);
 
         return view;
     }

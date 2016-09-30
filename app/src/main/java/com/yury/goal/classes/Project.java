@@ -1,5 +1,8 @@
 package com.yury.goal.classes;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,12 +48,20 @@ public class Project {
         return startDate;
     }
 
+    public String getStringStartDate(){
+        return startDate.getDay()+"/"+(startDate.getMonth()+1)+"/"+startDate.getYear();
+    }
+
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
     public Date getEndDate() {
         return endDate;
+    }
+
+    public String getStringEndDate(){
+        return endDate.getDay()+"/"+(endDate.getMonth()+1)+"/"+endDate.getYear();
     }
 
     public void setEndDate(Date endDate) {
@@ -116,5 +127,19 @@ public class Project {
     public String toString() {
         SimpleDateFormat sf = new SimpleDateFormat("dd/mm/yyyyy");
         return getName()+", from: "+sf.format(getStartDate())+" to "+sf.format(getEndDate());
+    }
+
+    public int getDaysLeft(){
+        return Days.daysBetween(new DateTime(), new DateTime(endDate.getTime())).getDays();
+    }
+
+    public List<Task> getTasks(){
+        List<Task> tasks = new ArrayList<Task>();
+
+        for(Section section : sections){
+            tasks.addAll(section.getTasks());
+        }
+
+        return tasks;
     }
 }

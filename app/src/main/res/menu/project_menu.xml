@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/ic_create_white_24dp"
+        android:id="@+id/editProject"
+        android:title="@string/edit_project"
+        app:showAsAction="always"/>
+
+    <item
+        android:icon="@drawable/ic_clear_white_24dp"
+        android:id="@+id/deleteProject"
+        android:title="@string/delete_project"
+        app:showAsAction="always"/>
+</menu>

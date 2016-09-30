@@ -48,12 +48,20 @@ public class Task {
         return startDate;
     }
 
+    public String getStringStartDate(){
+        return startDate.getDay()+"/"+(startDate.getMonth()+1)+"/"+startDate.getYear();
+    }
+
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
     public Date getEndDate() {
         return endDate;
+    }
+
+    public String getStringEndDate(){
+        return endDate.getDay()+"/"+(endDate.getMonth()+1)+"/"+endDate.getYear();
     }
 
     public void setEndDate(Date endDate) {
@@ -121,5 +129,12 @@ public class Task {
 
     public int getTaskId() {
         return taskId;
+    }
+
+    public void update(String name, Date startDate, Date endDate, String description){
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.description = description;
     }
 }

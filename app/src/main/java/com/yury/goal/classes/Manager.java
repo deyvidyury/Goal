@@ -23,8 +23,8 @@ public class Manager {
     private Manager() {
         projects = new ArrayList<Project>();
 
-        Project project1 = new Project("Project A",new Date(2016,1,1),new Date(2016,10,01),1000.0);
-        Project project2 = new Project("Project B",new Date(2016,2,1),null,0);
+        Project project1 = new Project("Project A",new Date(2016,1,1),new Date(2016,12,01),1000.0);
+        Project project2 = new Project("Project B",new Date(2016,2,1),new Date(2017,2,1),0);
 
         Section section1Project2 = new Section("Section A");
         Section section2Project2 = new Section("Section B");
@@ -74,5 +74,16 @@ public class Manager {
     public void adiciona(Project project){
         Log.i("PROJECT",project.toString());
         projects.add(project);
+    }
+
+    public void delete(int position){
+        Project project = Manager.getInstance().getProjects().get(position);
+
+        for(Section section : project.getSections()){
+            section.getTasks().clear();
+        }
+        project.getSections().clear();
+        project = null;
+        Manager.getInstance().getProjects().remove(position);
     }
 }

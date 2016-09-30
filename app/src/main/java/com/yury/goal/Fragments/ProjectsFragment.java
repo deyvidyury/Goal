@@ -10,18 +10,22 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.yury.goal.NewProject;
 import com.yury.goal.R;
-import com.yury.goal.adapters.ProjectsAdapater;
+import com.yury.goal.ProjectActivity;
+import com.yury.goal.adapters.ProjectsAdapter;
+import com.yury.goal.classes.Project;
 
 /**
  * Created by deyvidyury on 6/09/16.
  */
 public class ProjectsFragment extends Fragment {
     private ListView listView;
-    private ProjectsAdapater adapater;
+    private ProjectsAdapter adapater;
 
     @Nullable
     @Override
@@ -30,13 +34,29 @@ public class ProjectsFragment extends Fragment {
 
         //ListView
         listView = (ListView)view.findViewById(R.id.listViewProjects);
-        adapater = new ProjectsAdapater(getActivity());
+        adapater = new ProjectsAdapter(getActivity());
         listView.setAdapter(adapater);
+        listView.setOnItemClickListener(onItemClickProject());
 
         // Create the Add project menu
         setHasOptionsMenu(true);
 
         return view;
+    }
+
+    private AdapterView.OnItemClickListener onItemClickProject(){
+        return new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ProjectsAdapter adapter = (ProjectsAdapter) parent.getAdapter();
+                Project project = (Project)adapter.getItem(position);
+                Intent intent = new Intent(getActivity(),ProjectActivity.class);
+                intent.putExtra("project",project.getName());
+                intent.putExtra("position",position);
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        };
     }
 
     @Override
